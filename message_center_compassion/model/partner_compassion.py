@@ -18,12 +18,12 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
 
-class product(orm.Model):
-    _inherit = 'product.product'
-    
-    _columns = {
-        'gp_fund_id': fields.integer("GP Fund id", size=4),
-    }
+class ResPartner(Model):
+
+    """ Adds triggers to creation of GMC messages."""
+
+    _inherit = 'res.partner'
+
+
+ResPartner()

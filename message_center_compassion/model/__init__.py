@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Emanuel Cino. Copyright Compassion Suisse
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,13 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
-
-class product(orm.Model):
-    _inherit = 'product.product'
-    
-    _columns = {
-        'gp_fund_id': fields.integer("GP Fund id", size=4),
-    }
+import gmc_message
+import child_compassion
+import partner_compassion
+import contracts
