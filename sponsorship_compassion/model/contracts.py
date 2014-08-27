@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Cyril Sester. Copyright Compassion Suisse
+#    Authors: Cyril Sester
+#             Emanuel Cino
+#             Copyright Compassion Suisse
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,7 +20,7 @@
 #
 ##############################################################################
 
-from datetime import datetime
+import datetime
 from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
 from openerp import netsvc
@@ -66,6 +68,11 @@ class simple_recurring_contract(orm.Model):
         """ Hook for doing something when an invoice line is paid. """
         pass
         
+    def _default_date(self, cr, uid, context=None):
+        today = datetime.date.today()
+        res = today.replace(day=1) + relativedelta(months=1)
+        return str(res)
+        
     def _is_fully_managed(self, cr, uid, ids, field_name, arg, context):
         # Tells if the correspondant and the payer is the same person.
         res = {}
@@ -101,6 +108,10 @@ class simple_recurring_contract(orm.Model):
                 'account.invoice': (_get_contract_from_invoice, ['state'], 50),
             }, help="It indicates that the first invoice has been paid and the contract is active."),
         'fully_managed': fields.function(_is_fully_managed, type="boolean", store=True),
+    }
+    
+    _defaults = {
+        'start_date': _default_date,
     }
     
     def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
