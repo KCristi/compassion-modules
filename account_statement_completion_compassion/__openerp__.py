@@ -28,8 +28,8 @@
 ##############################################################################
 
 {
-    "name": "Account Statement BVR Reference Completion for Compassion CH",
-    "version": "0.5",
+    "name": "Account Statement Completion Rules for Compassion CH",
+    "version": "0.6",
     "author": "Emanuel Cino",
     "category": "Finance",
     "website": "http://www.compassion.ch",
@@ -41,14 +41,16 @@
     "css": ["static/src/css/sheet.css"],
     "description": """
 
-Account Statement BVR Reference Completion for Compassion CH
+Account Statement Completion Rules for Compassion CH
 =========================
 
-- Add two completion methods :
-    1. Completion method based on the BVR reference of the invoice
+- Add three completion methods :
+    1. Completion method based on the BVR reference of the contract or the invoice.
     2. Completion method based on the reference of the partner
+    3. Completion method for Raiffaisen statements (supplier invoices) based only on the amount.
 
-- The first rule is applied. If no open invoice is found with same BVR reference, then second rule is applied, and an invoice is generated on-the-fly for gifts or funds donations.
+- The first rule is applied. If no contract or invoice is found with same BVR reference, then second rule is applied, and an invoice is generated on-the-fly for gifts or funds donations.
+- The third rule is useful only for supplier invoices.
 
 """,
     "demo": [],
